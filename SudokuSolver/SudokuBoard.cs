@@ -21,6 +21,56 @@ namespace SudokuSolver
             this.board = board;
         }
 
+        public SudokuBoard(String[] lines)
+        {
+            this.board = new char[lines.Length, lines[0].Length];
+            for (int i = 0; i < lines.Length; i++)
+            {
+                for (int j = 0; j < lines[0].Length; j++)
+                {
+                    board[i, j] = lines[i][j];
+                }
+            }
+        }
+
+        public Boolean Validate()
+        {
+            for (int i = 0; i < MaxNumber; i++)
+            {
+                if (!checkColumn(i) || !checkRow(i))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private Boolean checkColumn(int columnIndex)
+        {
+            HashSet<char> columnNumbers = new HashSet<char>();
+            for (int y = 0; y < MaxNumber; y++)
+            {
+                if (!columnNumbers.Add(board[columnIndex, y]) && board[columnIndex, y] != '0')
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private Boolean checkRow(int rowIndex)
+        {
+            HashSet<char> rowNumbers = new HashSet<char>();
+            for (int x = 0; x < MaxNumber; x++)
+            {
+                if (!rowNumbers.Add(board[rowIndex,x]) && board[rowIndex, x] != '0')
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public void PrintBoard()
         {
             Console.WriteLine("Current Sudoku!\n");

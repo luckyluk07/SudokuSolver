@@ -6,17 +6,13 @@ namespace SudokuSolver
     {
         static void Main(string[] args)
         {
-            String[] rows = { "780400120", "780400120", "780400120", "780400120", "780400120", "780400120", "780400120", "780400120", "780400120" };
-            char[,] board = new char[9, 9];
-            for (int i = 0; i < 9; i++)
-            {
-                for (int j = 0; j < 9; j++)
-                {
-                    board[i, j] = rows[i][j];
-                }
-            }
-            SudokuBoard sudoku = new SudokuBoard(board);
+            String[] example = { "780400120", "780400120", "780400120", "780400120", "780400120", "780400120", "780400120", "780400120", "780400120" };
+            String[] properExample = { "957613284", "483257196", "612849537", "178364952", "524971368", "369528741", "845792613", "291436875", "736185429" };
+            String[] wrongColumns = { "957613284", "983257196", "612849537", "178364952", "524971368", "369528741", "845792613", "291436875", "736185429" };
+            String[] wrongRows = { "957613224", "483257196", "612849537", "178364952", "524971368", "369528741", "845792613", "291436875", "736185429" };
+            SudokuBoard sudoku = new SudokuBoard(wrongColumns);
             sudoku.PrintBoard();
+            Console.WriteLine(sudoku.Validate());
         }
     }
 }
