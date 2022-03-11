@@ -23,10 +23,20 @@ namespace SudokuSolver
 
         public void PrintBoard()
         {
+            Console.WriteLine("Current Sudoku!\n");
             for (int i = 0; i < MaxNumber; i++)
             {
+                if (i != 0 && i % 3 == 0)
+                {
+                    Console.WriteLine("---------------------");
+                }
+
                 for (int j = 0; j < MaxNumber; j++)
                 {
+                    if (j != 0 && j % 3 == 0)
+                    {
+                        Console.Write("| ");
+                    }
                     Console.Write(board[i, j] + " ");
                 }
                 Console.WriteLine();
