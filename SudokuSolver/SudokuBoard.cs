@@ -45,6 +45,64 @@ namespace SudokuSolver
             return true;
         }
 
+        private Boolean checkIsSolved()
+        {
+            for (int i = 0; i < MaxNumber; i++)
+            {
+                for (int j = 0; j < MaxNumber; j++)
+                {
+                    if (board[i,j] == '0')
+                    {
+                        return false;
+                    }
+                }
+            }
+            return Validate();
+        }
+
+        private Boolean checkPotentialPlace(char number, int x, int y)
+        {
+
+            if (board[y, x] != '0')
+            {
+                Console.WriteLine("This place is already filled");
+                return false;
+            }
+            //check column
+            for (int i = 0; i < MaxNumber; i++)
+            {
+                if (board[i, x] == number && i != y)
+                {
+                    return false;
+                }
+            }
+
+            //check row
+            for (int i = 0; i < MaxNumber; i++)
+            {
+                if (board[y,i] == number && i != x)
+                {
+                    return false;
+                }
+            }
+
+            int square_x = x / 3;
+            int square_y = y / 3;
+            //check sqare
+            for (int i = square_y * 3; i < square_y * 3 + 3; i++)
+            {
+                for (int j = square_x * 3; j < square_x * 3 + 3; j++)
+                {
+                    if (board[i,j] == number && i != y && j != x)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
         private Boolean checkColumn(int columnIndex)
         {
             HashSet<char> columnNumbers = new HashSet<char>();
