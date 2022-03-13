@@ -45,6 +45,32 @@ namespace SudokuSolver
             return true;
         }
 
+        public Boolean SolveByBacktracking()
+        {
+            if (findEmptyPlaces() == null)
+            {
+                return true;
+            }
+            var emptyPlace = findEmptyPlaces();
+            int y = emptyPlace.Item1;
+            int x = emptyPlace.Item2;
+            for (int i = '1'; i <= '9'; i++)
+            {
+                char number = (char)i;
+                if (board[y, x] == '0' && checkPotentialPlace(number, x, y))
+                {
+                    board[y, x] = number;
+                    if(SolveByBacktracking())
+                    {
+                        return true;
+                    }
+
+                    board[y, x] = '0';
+                }
+            }
+            return false;
+        }
+
         private Boolean checkIsSolved()
         {
             for (int i = 0; i < MaxNumber; i++)
@@ -60,12 +86,26 @@ namespace SudokuSolver
             return Validate();
         }
 
+        private Tuple<int,int> findEmptyPlaces()
+        {
+            for (int i = 0; i < MaxNumber; i++)
+            {
+                for (int j = 0; j < MaxNumber; j++)
+                {
+                    if (board[i, j] == '0')
+                    {
+                        return Tuple.Create(i, j);
+                    }
+                }
+            }
+            return null;
+        }
+
         private Boolean checkPotentialPlace(char number, int x, int y)
         {
-
             if (board[y, x] != '0')
             {
-                Console.WriteLine("This place is already filled");
+                //Console.WriteLine("This place is already filled");
                 return false;
             }
             //check column
