@@ -28,8 +28,15 @@ namespace SudokuSolver
             do
             {
                 this.menu.ShowMenu();
-                int userChoose = Console.Read() - '0';
-                if (Enum.IsDefined(typeof(Decision), userChoose))
+                String tmp = Console.ReadLine();
+                int userChoose = -1;
+                Boolean correctConversion = true;
+                if (!int.TryParse(tmp, out userChoose)) 
+                {
+                    correctConversion = false;
+                }
+
+                if (correctConversion && Enum.IsDefined(typeof(Decision), userChoose))
                 {
                     switch(userChoose)
                     {
