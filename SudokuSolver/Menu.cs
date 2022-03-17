@@ -13,7 +13,15 @@ namespace SudokuSolver
         {
             Console.WriteLine("**********SUDOKU-SOLVER-CONSOLE-APPLICATION**********");
             Console.WriteLine("0) Solve current sudoku by backtracking");
-            Console.WriteLine("1) EXIT");
+            Console.WriteLine("1) Insert your own sudoku board");
+            Console.WriteLine("2) EXIT");
+        }
+
+        public void ShowInsertSudokuOptions()
+        {
+            Console.WriteLine("*****INSERT-SUDOKU*****");
+            Console.WriteLine("0) Insert line by line");
+            Console.WriteLine("9) Go back to main menu");
         }
     }
 }

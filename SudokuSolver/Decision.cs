@@ -9,6 +9,7 @@ namespace SudokuSolver
     public enum Decision
     {
         SolveByBacktracking,
+        InsertSudoku,
         Exit, 
         Unknown
     }

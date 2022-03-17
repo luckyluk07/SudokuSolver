@@ -44,6 +44,9 @@ namespace SudokuSolver
                             sudokuBoard.SolveByBacktracking();
                             sudokuBoard.PrintBoard();
                             break;
+                        case (int)Decision.InsertSudoku:
+                            insertSudoku();
+                            break;
                         case (int)Decision.Exit:
                             isEnd = true;
                             break;
@@ -53,6 +56,50 @@ namespace SudokuSolver
                 }
                 
             } while (!isEnd);
+        }
+
+        private void insertSudoku()
+        {
+            Boolean isEnd = false;
+            while (!isEnd)
+            {
+                this.menu.ShowInsertSudokuOptions();
+
+                String userInput = Console.ReadLine();
+                int userDecision;
+                if (!int.TryParse(userInput, out userDecision))
+                {
+                    continue;
+                }
+
+                switch (userDecision)
+                {
+                    case 0:
+                        this.insertRowByRow();
+                        break;
+                    case 9:
+                        return;
+                    default:
+                        break;
+                }
+            }
+
+            return;
+        }
+
+        private void insertRowByRow()
+        {
+            String[] rows = new String[9];
+            for (int i = 0; i < 9; i++)
+            {
+                rows[i] = Console.ReadLine();
+                if (rows[i].Length > 9)
+                {
+                    Console.WriteLine($"Too long input, row: {rows[i]} has {rows[i].Length} characters\n");
+                    break;
+                }
+            }
+            this.sudokuBoard = new SudokuBoard(rows);
         }
     }
 }
