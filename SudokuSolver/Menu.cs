@@ -22,6 +22,7 @@ namespace SudokuSolver
         {
             Console.WriteLine("*****INSERT-SUDOKU*****");
             Console.WriteLine("0) Insert line by line");
+            Console.WriteLine("1) Insert column by column");
             Console.WriteLine("9) Go back to main menu");
         }
     }

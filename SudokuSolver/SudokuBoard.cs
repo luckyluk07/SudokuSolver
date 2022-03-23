@@ -41,6 +41,24 @@ namespace SudokuSolver
             }
         }
 
+        public SudokuBoard(String[] columns, bool insertColumns)
+        {
+            if (insertColumns)
+            {
+                this.validator = new Validator();
+                this.backtrackingSolver = new BacktrackingSolver();
+                this.board = new char[columns.Length, columns[0].Length];
+                for (int i = 0; i < columns.Length; i++)
+                {
+                    for (int j = 0; j < columns[0].Length; j++)
+                    {
+                        board[j, i] = columns[i][j];
+                    }
+                }
+
+            }
+        }
+
         public Boolean Validate()
         {
             return this.validator.ValidateSudoku(this.board);

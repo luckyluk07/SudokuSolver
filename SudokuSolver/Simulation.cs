@@ -85,6 +85,9 @@ namespace SudokuSolver
                     case 0:
                         this.insertRowByRow();
                         break;
+                    case 1:
+                        this.insertColumnByColumn();
+                        break;
                     case 9:
                         return;
                     default:
@@ -110,6 +113,23 @@ namespace SudokuSolver
                 }
             }
             this.sudokuBoard = new SudokuBoard(rows);
+        }
+
+        private void insertColumnByColumn()
+        {
+            Console.WriteLine("Start inserting columns...");
+            String[] columns = new String[9];
+            for (int i = 0; i < 9; i++)
+            {
+                Console.WriteLine($"Write {i + 1} column...");
+                columns[i] = Console.ReadLine();
+                if (columns[i].Length > 9)
+                {
+                    Console.WriteLine($"Too long input, column: {columns[i]} has {columns[i].Length} characters\n");
+                    break;
+                }
+            }
+            this.sudokuBoard = new SudokuBoard(columns, true);
         }
     }
 }
