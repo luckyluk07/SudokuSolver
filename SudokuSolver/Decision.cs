@@ -10,6 +10,7 @@ namespace SudokuSolver
     {
         SolveByBacktracking,
         InsertSudoku,
+        PrintSudoku,
         Exit, 
         Unknown
     }

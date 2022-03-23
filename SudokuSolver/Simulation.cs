@@ -47,6 +47,14 @@ namespace SudokuSolver
                         case (int)Decision.InsertSudoku:
                             insertSudoku();
                             break;
+                        case (int)Decision.PrintSudoku:
+                            if (this.sudokuBoard == null)
+                            {
+                                Console.WriteLine("Sudoku is not initialized");
+                                break;
+                            }
+                            this.sudokuBoard.PrintBoard();
+                            break;
                         case (int)Decision.Exit:
                             isEnd = true;
                             break;
@@ -89,9 +97,11 @@ namespace SudokuSolver
 
         private void insertRowByRow()
         {
+            Console.WriteLine("Start inserting rows...");
             String[] rows = new String[9];
             for (int i = 0; i < 9; i++)
             {
+                Console.WriteLine($"Write {i+1} line...");
                 rows[i] = Console.ReadLine();
                 if (rows[i].Length > 9)
                 {
