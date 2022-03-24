@@ -88,6 +88,9 @@ namespace SudokuSolver
                     case 1:
                         this.insertColumnByColumn();
                         break;
+                    case 2:
+                        this.insertPointByPoint();
+                        break;
                     case 9:
                         return;
                     default:
@@ -96,6 +99,55 @@ namespace SudokuSolver
             }
 
             return;
+        }
+
+        private void insertPointByPoint()
+        {
+            char[,] board = new char[9, 9];
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.GetLength(1); j++)
+                {
+                    board[i, j] = '0';
+                }
+            }
+
+            Console.WriteLine("Start inserting points...");
+            while (true)
+            {
+                Console.WriteLine("Type 'e' to finish inserting points..");
+                Console.Write("Type row: ");
+                string input = Console.ReadLine();
+                if (input == "e")
+                {
+                    break;
+                }
+                int row = int.Parse(input);
+
+                Console.Write("Type column: ");
+                input = Console.ReadLine();
+                if (input == "e")
+                {
+                    break;
+                }
+                int column = int.Parse(input);
+
+                Console.Write("Type number to enter: ");
+                input = Console.ReadLine();
+                if (input == "e")
+                {
+                    break;
+                }
+                int number = int.Parse(input);
+                if (number < 1 || number > 9)
+                {
+                    Console.WriteLine("Number must not be smaller than 1 or bigger than 9");
+                    continue;
+                }
+                board[row - 1, column - 1] = (char) (number + '0');
+                printCurrentBoard(board);
+            }
+            this.sudokuBoard = new SudokuBoard(board);
         }
 
         private void insertRowByRow()
@@ -130,6 +182,27 @@ namespace SudokuSolver
                 }
             }
             this.sudokuBoard = new SudokuBoard(columns, true);
+        }
+
+        private static void printCurrentBoard(char[,] board)
+        {
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                if (i != 0 && i % 3 == 0)
+                {
+                    Console.WriteLine("---------------------");
+                }
+
+                for (int j = 0; j < board.GetLength(1); j++)
+                {
+                    if (j != 0 && j % 3 == 0)
+                    {
+                        Console.Write("| ");
+                    }
+                    Console.Write(board[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
         }
     }
 }

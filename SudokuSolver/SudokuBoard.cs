@@ -72,14 +72,14 @@ namespace SudokuSolver
         public void PrintBoard()
         {
             Console.WriteLine("Current Sudoku!\n");
-            for (int i = 0; i < MaxNumber; i++)
+            for (int i = 0; i < this.board.GetLength(0); i++)
             {
                 if (i != 0 && i % 3 == 0)
                 {
                     Console.WriteLine("---------------------");
                 }
 
-                for (int j = 0; j < MaxNumber; j++)
+                for (int j = 0; j < this.board.GetLength(1); j++)
                 {
                     if (j != 0 && j % 3 == 0)
                     {
